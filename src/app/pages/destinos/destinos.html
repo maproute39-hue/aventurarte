@@ -18,124 +18,59 @@
          </div>
 
          <!-- ====== Featured Destination ====== -->
-         <section class="featured-destination bg-secondary">
-            <div class="shape">
-               <img src="assets/shape2-CohIZJQK.png" alt="">
+       <section class="featured-destination bg-secondary">
+  <div class="shape">
+    <img src="assets/shape2-CohIZJQK.png" alt="">
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="container">
+    <div class="row g-4">
+      <div
+        class="col-12 col-sm-6 col-lg-4"
+        *ngFor="let destination of destinations; let i = index; trackBy: trackByDestinationId"
+      >
+        <div
+          class="featured-destination-card fadeInUp"
+          [attr.data-delay]="getAnimationDelay(i)"
+        >
+          <img
+            [src]="getMainImageUrl(destination)"
+            [alt]="destination.name"
+          />
+
+          <div class="overlay-content d-flex flex-wrap gap-2 align-items-end justify-content-between">
+            <div>
+              <p class="mb-1 text-white">Viaja a</p>
+              <h2 class="mb-0 text-white h5">{{ destination.name }}</h2>
+
+              <small class="text-white d-block opacity-75">
+                {{ getLocationText(destination) }}
+              </small>
             </div>
 
-            <!-- Divider -->
-            <div class="divider"></div>
+            <span class="badge bg-primary">
+              Destino
+            </span>
+          </div>
+        </div>
+      </div>
 
-            <div class="container">
-               <div class="row g-4">
-                  <!-- Featured Destination Card -->
-                  <div class="col-12 col-sm-6 col-lg-4">
-                     <div class="featured-destination-card fadeInUp" data-delay="0.2">
-                        <img src="assets/10-CR6vQaeA.jpg" alt="">
+      <!-- Estado vacío -->
+      <div class="col-12" *ngIf="!isLoading && destinations.length === 0">
+        <div class="text-center py-5 text-white">
+          <h4 class="mb-2">No hay destinos destacados aún</h4>
+          <p class="mb-0 opacity-75">
+            Pronto encontrarás nuevos lugares para explorar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-                        <!-- Overlay Content -->
-                        <div class="overlay-content d-flex flex-wrap gap-2 align-items-end justify-content-between">
-                           <div>
-                              <p class="mb-1 text-white">Travel To</p>
-                              <h2 class="mb-0 text-white h5">Manhattan</h2>
-                           </div>
-                           <!-- Badge -->
-                           <span class="badge bg-primary">3 Tours</span>
-                        </div>
-                     </div>
-                  </div>
-
-                  <!-- Featured Destination Card -->
-                  <div class="col-12 col-sm-6 col-lg-4">
-                     <div class="featured-destination-card fadeInUp" data-delay="0.4">
-                        <img src="assets/11-BnwEvad1.jpg" alt="">
-
-                        <!-- Overlay Content -->
-                        <div class="overlay-content d-flex flex-wrap gap-4 align-items-end justify-content-between">
-                           <div>
-                              <p class="mb-1 text-white">Travel To</p>
-                              <h2 class="mb-0 text-white h5">Pearland</h2>
-                           </div>
-                           <!-- Badge -->
-                           <span class="badge bg-primary">4 Tours</span>
-                        </div>
-                     </div>
-                  </div>
-
-                  <!-- Featured Destination Card -->
-                  <div class="col-12 col-sm-6 col-lg-4">
-                     <div class="featured-destination-card fadeInUp" data-delay="0.6">
-                        <img src="assets/12-CKcSf9Tw.jpg" alt="">
-
-                        <!-- Overlay Content -->
-                        <div class="overlay-content d-flex flex-wrap gap-4 align-items-end justify-content-between">
-                           <div>
-                              <p class="mb-1 text-white">Travel To</p>
-                              <h2 class="mb-0 text-white h5">New York</h2>
-                           </div>
-                           <!-- Badge -->
-                           <span class="badge bg-primary">2 Tours</span>
-                        </div>
-                     </div>
-                  </div>
-
-                  <!-- Featured Destination Card -->
-                  <div class="col-12 col-sm-6 col-lg-4">
-                     <div class="featured-destination-card fadeInUp" data-delay="0.2">
-                        <img src="assets/98-DUQe8an2.jpg" alt="">
-
-                        <!-- Overlay Content -->
-                        <div class="overlay-content d-flex flex-wrap gap-4 align-items-end justify-content-between">
-                           <div>
-                              <p class="mb-1 text-white">Travel To</p>
-                              <h2 class="mb-0 text-white h5">Manhattan</h2>
-                           </div>
-                           <!-- Badge -->
-                           <span class="badge bg-primary">3 Tours</span>
-                        </div>
-                     </div>
-                  </div>
-
-                  <!-- Featured Destination Card -->
-                  <div class="col-12 col-sm-6 col-lg-4">
-                     <div class="featured-destination-card fadeInUp" data-delay="0.4">
-                        <img src="assets/99-n35D559u.jpg" alt="">
-
-                        <!-- Overlay Content -->
-                        <div class="overlay-content d-flex flex-wrap gap-4 align-items-end justify-content-between">
-                           <div>
-                              <p class="mb-1 text-white">Travel To</p>
-                              <h2 class="mb-0 text-white h5">Pearland</h2>
-                           </div>
-                           <!-- Badge -->
-                           <span class="badge bg-primary">4 Tours</span>
-                        </div>
-                     </div>
-                  </div>
-
-                  <!-- Featured Destination Card -->
-                  <div class="col-12 col-sm-6 col-lg-4">
-                     <div class="featured-destination-card fadeInUp" data-delay="0.6">
-                        <img src="assets/100-BKJvTK7r.jpg" alt="">
-
-                        <!-- Overlay Content -->
-                        <div class="overlay-content d-flex flex-wrap gap-4 align-items-end justify-content-between">
-                           <div>
-                              <p class="mb-1 text-white">Travel To</p>
-                              <h2 class="mb-0 text-white h5">New York</h2>
-                           </div>
-                           <!-- Badge -->
-                           <span class="badge bg-primary">2 Tours</span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-
-            <!-- Divider -->
-            <div class="divider"></div>
-         </section>
-
+  <div class="divider"></div>
+</section>
          <!-- ====== Video Gallery Section ====== -->
 
          <!-- ====== Trip Section ====== -->
